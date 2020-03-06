@@ -36,7 +36,8 @@ class GameApp {
         spotLight.position.set( 25.0, 35.0, 25.0 );
         this.scene.add(spotLight);
 
-        this.player.camera.position.set(25.0, 4.0, 25.0);
+        this.scene.add(this.player.cube.mesh);
+//        this.player.camera.position.set(25.0, 4.0, 25.0);
 
         this.stats = new Stats();
         // 右上に設定
@@ -49,7 +50,7 @@ class GameApp {
     connect() {
         this.socket.emit('connected', {
             clientID: this.id,
-            position: this.player.camera.position
+            position: this.player.position
         });
         
         this.socket.on('disconnect', () => {});
@@ -115,12 +116,12 @@ function main() {
 
     function loop() {
         app.stats.update();
-        app.player.prevPos = Object.assign({}, app.player.camera.position);
+        app.player.prevPos = Object.assign({}, app.player.position);
         app.player.update(app.stage);
-        if (JSON.stringify(app.player.camera.position) != JSON.stringify(app.player.prevPos)) {
+        if (JSON.stringify(app.player.position) != JSON.stringify(app.player.prevPos)) {
             app.socket.emit('updatePosition', {
                 clientID: app.id,
-                position: app.player.camera.position
+                position: app.player.position
             });
         };
 
