@@ -24,6 +24,8 @@ Webゲームアプリを共同開発するリポジトリです。
 通信：Socket.IO  
 開発環境：docker  
 本番環境：AWS  
+テストサーバ：http://os3-363-14517.vs.sakura.ne.jp/  
+
 ## contributors
 @minmin0530  
 @intelfike  
