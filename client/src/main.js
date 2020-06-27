@@ -17,7 +17,7 @@ class GameApp {
 
     init() {
         this.renderer.setSize( window.innerWidth, window.innerHeight );
-        this.renderer.setClearColor(0x888800, 1.0);
+        this.renderer.setClearColor(0x00aaff, 1.0);
         document.body.appendChild( this.renderer.domElement );
         this.renderer.domElement.addEventListener('click', () => {
             this.renderer.domElement.requestPointerLock();
@@ -29,6 +29,20 @@ class GameApp {
         const directionalLight = new THREE.DirectionalLight(0xffffff);
         directionalLight.position.set(25, 1000, 25);
         this.scene.add(directionalLight);
+        let f = 0x888888;
+        this.directionalLight1 = new THREE.DirectionalLight(f);
+        this.directionalLight1.position.set(-2500, 100, 2500);
+        this.scene.add(this.directionalLight1);
+        this.directionalLight2 = new THREE.DirectionalLight(f);
+        this.directionalLight2.position.set(2500, 100, -2500);
+        this.scene.add(this.directionalLight2);
+        this.directionalLight3 = new THREE.DirectionalLight(f);
+        this.directionalLight3.position.set(2500, 100, 2500);
+        this.scene.add(this.directionalLight3);
+        this.directionalLight4 = new THREE.DirectionalLight(f);
+        this.directionalLight4.position.set(-2500, 100, -2500);
+        this.scene.add(this.directionalLight4);
+
 
         // スポットライト光源を作成
         // new THREE.SpotLight(色, 光の強さ, 距離, 角度, ボケ具合, 減衰率)
@@ -36,7 +50,10 @@ class GameApp {
         spotLight.position.set( 25.0, 35.0, 25.0 );
         this.scene.add(spotLight);
 
-        this.scene.add(this.player.cube.mesh);
+//        this.scene.add(this.player.cube.mesh);
+        for (const c of this.player.cubeArray) {
+            this.scene.add(c.mesh);
+        }
 //        this.player.camera.position.set(25.0, 4.0, 25.0);
 
         this.stats = new Stats();
@@ -90,7 +107,11 @@ class GameApp {
         player.mesh.position.x = data.position.x;
         player.mesh.position.y = data.position.y;
         player.mesh.position.z = data.position.z;
-        this.scene.add(player.mesh);
+//        this.scene.add(player.mesh);
+        for (const c of player.cubeArray) {
+            this.scene.add(c.mesh);
+        }
+        
         this.players.set(data.clientID, player);
     }
 

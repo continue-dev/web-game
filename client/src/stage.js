@@ -15,6 +15,7 @@ export default class Stage {
                     array[index].mesh.position.x = x;
                     array[index].mesh.position.y = y * 10.0;
                     array[index].mesh.position.z = z;
+                    array[index].mesh.material = new THREE.MeshLambertMaterial({ color: 0x664422 });
                     // 3D空間にメッシュを追加
                     scene.add( array[index].mesh );
                     ++index;
@@ -167,6 +168,8 @@ export default class Stage {
                             this.blocks[this.blocks.length - 1].mesh.position.x = 10 * 1.2 + x * 1.2 + xx * 25 * 1.2;
                             this.blocks[this.blocks.length - 1].mesh.position.y = 1.2 + y * 1.2;
                             this.blocks[this.blocks.length - 1].mesh.position.z = 10 * 1.2 + z * 1.2 + zz * 25 * 1.2;
+                            this.blocks[this.blocks.length - 1].mesh.material = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
+
                             scene.add(this.blocks[this.blocks.length - 1].mesh);
                         }
                     }
